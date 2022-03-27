@@ -174,3 +174,37 @@ downloadBttn <- function(outputId,
     onclick = sprintf("getElementById('%s').click()", outputId)
   )
 }
+
+
+#' @title Update Awesome action button
+#'
+#' @description Change the value of an action Button on the client [actionBttn()]
+#'
+#' @param inputId The `input` slot that will be used to access the value.
+#' @param label The contents of the button, usually a text label.
+#' @param icon An optional icon to appear on the button.
+#' @param style Style of the button, to choose between `simple`, `bordered`,
+#'   `minimal`, `stretch`, `jelly`, `gradient`, `fill`,
+#'   `material-circle`, `material-flat`, `pill`, `float`, `unite`.
+#' @param color Color of the button : `default`, `primary`, `warning`,
+#'   `danger`, `success`, `royal`.
+
+#'
+#' @export
+#'
+#' @seealso [actionBttn()]
+#'
+
+updateActionBttn <- function(session = getDefaultReactiveDomain(),
+                                                  inputId,
+                                                  label = NULL,
+                                                  icon = NULL,
+                                                  style = NULL,
+                                                  color = NULL) {
+    message <- dropNulls(
+        list(label = label,
+             icon = icon, style = style,
+             color = color)
+    )
+    session$sendInputMessage(inputId, message)
+}
